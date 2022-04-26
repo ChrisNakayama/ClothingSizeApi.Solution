@@ -22,7 +22,7 @@ namespace ClothingSizeApi.Controllers
 
     // GET: api/Brands
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Brand>>> Get(string name, string gender, string clothingType)
+    public async Task<ActionResult<IEnumerable<Brand>>> Get(string name, string gender, string clothingType, string xxxs, string xxs, string xs, string s, string m, string l, string xl, string xxl, string xxxl, string xxxxl)
     {
       var query = _db.Brands.AsQueryable();
       if (name != null)
@@ -61,6 +61,26 @@ namespace ClothingSizeApi.Controllers
       {
         query = query.Where(entry => entry.M == m);
       } 
+     if (l !=null)
+      {
+        query = query.Where(entry => entry.L == l);
+      } 
+     if (xl !=null)
+      {
+        query = query.Where(entry => entry.XL == xl);
+      } 
+     if (xxl !=null)
+      {
+        query = query.Where(entry => entry.XXL == xxl);
+      } 
+     if (xxxl !=null)
+      {
+        query = query.Where(entry => entry.XXXL == xxxl);
+      } 
+      if (xxxxl !=null)
+      {
+        query = query.Where(entry => entry.XXXXL == xxxxl);
+      } 
       return await query.ToListAsync();
     }
 
@@ -77,19 +97,6 @@ namespace ClothingSizeApi.Controllers
 
         return brand;
     }
-
-    // [HttpGet("{id/womens}")]
-    // public async Task<ActionResult<Brand>> GetGender(int id)
-    // {
-    //   var brand = await _db.Brands.FindAsync(id);
-
-    //   if (brand == null)
-    //   {
-    //     return NotFound();
-    //   }
-
-    //   return brand;
-    // }
 
 
     // PUT: api/Brands/5
